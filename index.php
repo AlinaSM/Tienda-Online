@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css\bootstrap.min.css">
     <link rel="stylesheet" href="css\estilos.css">
     <link rel="shortcut icon" href="">
-    <title>Aperture: Encuentra la que quieres</title>
+    <title>Aperture</title>
 </head>
 <body>
 
