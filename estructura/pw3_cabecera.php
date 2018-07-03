@@ -47,11 +47,13 @@
         <li class="nav-item">
             <a class="nav-link" href="#">Registrarse</a>
         </li>
+        <li class="nav-item">
+            <img class="logo-principal" src="img/icons/cart-shop.png">
+        </li>
         </ul>
     </div>
-        
         <a class="navbar-brand" href="#">
-            <img class="logo-principal" src="img/icons/cart-shop.png">
+            
         </a>
     <div>
 
