@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css\bootstrap.min.css">
     <link rel="stylesheet" href="css\estilos.css">
     <link rel="shortcut icon" href="">
-    <title>Aperture: Encuentra la que quieres</title>
+    <title>Aperture: Encuentra la que quieres, por que tu quieres!</title>
 </head>
 <body>
 
@@ -14,7 +14,6 @@
     include('pw3_cabecera.php');
     include('pw3_carrusel.php');
     ?>
-
 
     <script src="js/jquery.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
