@@ -16,11 +16,6 @@
     ?>
 
 
-    <form action="" method="">
-        <input type="text">
-        <input type="submit">
-    </form>
-
     <script src="js/jquery.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
