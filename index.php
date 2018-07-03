@@ -14,7 +14,7 @@
     ?>
     
     <title>Aperture: Encuentra la que quieres!</title>
-
+    
 </head>
 <body>
 
