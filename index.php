@@ -25,6 +25,7 @@
     ?>
 
     <section>
+        <p>Hola mundo frangersal</p>
         
     </section>
 
