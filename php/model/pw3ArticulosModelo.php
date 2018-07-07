@@ -6,7 +6,7 @@ class ArticulosModelo{
     private $articulos;
 
     public function __construct(){
-        require_once("conectar.php");
+        require_once("pw3Conectar.php");
         $this->$db = Conectar::Conexion();
         $this->$articulos = array();
     }

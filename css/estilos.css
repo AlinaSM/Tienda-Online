@@ -1,6 +1,9 @@
 .logo-principal{
     height: 40px;
-    
+}
+
+.hg-30px{
+    height: 30px;
 }
 
 .color-cabecera{
@@ -14,7 +17,6 @@
 
 .navbar{
     background-color: rgb(37, 33, 33);
-    
 }
 
 .navbar .navbar-collapse .navbar-nav  .nav-item  a{
@@ -24,5 +26,5 @@
 
 .navbar .navbar-collapse .navbar-nav  .nav-item  .dropdown-item{
     color: #000000;
-    margin-left: 30px;
+    margin: 0;
 }

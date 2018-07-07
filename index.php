@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-    <?php  
-        include('estructura/pw3_favicon.php');
-        include('estructura/pw3_recursos.php');
-    ?>
-    <title>Aperture: Encuentra la que quieres!</title>
-</head>
+<?php
+    include('estructura/pw3_head.php');
+?>
+
 <body>
     <?php
-        include('estructura/pw3_cabecera.php');
+        include('estructura/pw3_header.php');
         include('estructura/pw3_carrusel.php');
         include('php/view/pw3NosotrosView.php');
+        include('estructura/pw3_footer.php');
     ?>
-
-
-
-
-
-
-
 </body>
 </html>
