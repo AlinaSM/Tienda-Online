@@ -1,10 +1,18 @@
-<?php
-    include('estructura/pw3_head.php');
+<?php 
+include('estructura/pw3_head.php');
+include('estructura/pw3_header.php'); 
 ?>
 
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <?php
+        Head("");
+    ?>
+</head>
 <body>
     <?php
-        include('estructura/pw3_header.php');
+        HeaderCompleto("");
         include('estructura/pw3_carrusel.php');
         include('php/view/pw3NosotrosView.php');
         include('estructura/pw3_footer.php');

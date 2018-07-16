@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="es-MX">
-    <head>
-        <meta charset="UTF-8">
+<?php
+function Head($direccion){
+    include($direccion.'estructura/pw3_favicon.php');
+    include($direccion.'estructura/pw3_archivosBootstrap.php');
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-        <link rel="shortcut icon" href="img/icons/aperture.ico">
-        <link rel="stylesheet" href="css\bootstrap.min.css">
-        <link rel="stylesheet" href="css\estilos.css">
-
-
-        <script src="js/jquery.slim.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>    
-        <title>Aperture: Encuentra la que quieres!</title>
-    </head>
+    echo '  <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="'.$direccion.'css/estilos.css">
+            <title>Aperture: Encuentra la que quieres!</title>';
+    
+    ArchivosDeBootstrap($direccion);
+    Favicon($direccion);
+}
+?>

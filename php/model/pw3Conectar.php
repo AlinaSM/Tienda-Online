@@ -1,14 +1,11 @@
 <?php
 
 class Conectar{
-    private $user = "";
-    private $pass = "";
-    private $db = "TiendaOnline";
 
-    public static function Conexion(){
+    public function Conexion(){
         try{
             $options = array( PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8" );
-            $cn = new PDO("mysql:host=localhost;dbname=$db",$user,$pass,$options);
+            $cn = new PDO("mysql:host=localhost;dbname=TiendaOnline","root","",$options);
             $cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch(Exception $e){
             die("Error al conectar con la base de datos: ".$e->getMesage());
