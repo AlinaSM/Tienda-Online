@@ -23,7 +23,8 @@ class UsuarioModelo{
                                     ":apellido"   => $datos['Apellidos'],
                                     ":email"      => $datos['Email'],
                                     ":usuario"    => $datos['Usuario'],
-                                    ":contrasena" => password_hash(  $datos['Contrasena'], PASSWORD_DEFAULT ),
+                                    ":contrasena" => password_hash( $datos['Contrasena'], 
+                                                                    PASSWORD_DEFAULT ),
                                     ":direccion"  => $datos['Direccion']
                                 ));
       
@@ -42,12 +43,7 @@ class UsuarioModelo{
             }
         }
 
-        if($encontrado){
-            return true;
-        }else{
-            return false;
-        }
-
+        return $encontrado;
     }
 
 
