@@ -18,7 +18,7 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Registro</h5>
-                            <form class="form-signin" id="formularioRegistro">
+                            <form class="form-signin" id="formularioRegistro" method="POST" action="php/controller/pw3UsuariosControlador.php">
                                 <div class="form-label-group">
                                     <label for="Nombre">Nombre</label>
                                     <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="Nombre" required autofocus>
@@ -49,6 +49,8 @@
                                     <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="Dirección" >
                                 </div>
 
+                                <input type="hidden" name="inpRegistro">
+
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="idBotonRegistro">Registrarse</button>
                                 <hr class="my-4">
 
@@ -62,7 +64,7 @@
 
     <?php include('estructura/pw3_footer.php'); ?>
 
-    <script src="js/acceso.js"></script>
+    <!--<script src="js/acceso.js"></script>-->
 </body>
 
 </html>

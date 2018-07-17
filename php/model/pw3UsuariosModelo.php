@@ -14,40 +14,57 @@ class UsuarioModelo{
 
 
     public function Registro($datos){
-        
         $consulta = "INSERT INTO usuario(tipo,nombre,apellido,email,username,contrasena,direccion) 
-        VALUES(:tipo, :nombre, :apellido, :email, :usuario, :contrasena,:direccion)";
+                     VALUES(:tipo, :nombre, :apellido, :email, :usuario, :contrasena,:direccion)";
         $resultado = $this->db->prepare($consulta);
 
         $resultado->execute(array(  ":tipo" => "user", 
-                                    ":nombre"     => CodificarJSON($datos['Nombre']),
-                                    ":apellido"   => CodificarJSON($datos['Apellidos']),
-                                    ":email"      => CodificarJSON($datos['Email']),
-                                    ":usuario"    => CodificarJSON($datos['Usuario']),
-                                    ":contrasena" => password_hash( CodificarJSON( $datos['Contrasena']), PASSWORD_DEFAULT ),
-                                    ":direccion"  => CodificarJSON($datos['Direccion'])
+                                    ":nombre"     => $datos['Nombre'],
+                                    ":apellido"   => $datos['Apellidos'],
+                                    ":email"      => $datos['Email'],
+                                    ":usuario"    => $datos['Usuario'],
+                                    ":contrasena" => password_hash(  $datos['Contrasena'], PASSWORD_DEFAULT ),
+                                    ":direccion"  => $datos['Direccion']
                                 ));
       
     }
 
 
-    public function ValidarInicio($datos){
-        
+    public function ValidarInicio($usuario, $contrasena){
+        $encontrado = false;
+        $consulta = "SELECT id, username, contrasena FROM usuario WHERE tipo = 'user' AND username ='".$usuario."';";
+        $resultado = $this->db->prepare($consulta);
+        $resultado->execute();
+
+        while($registro = $resultado->fetch(PDO::FETCH_ASSOC)){
+            if(password_verify($contrasena, $registro['contrasena'])){
+                $encontrado = true;
+            }
+        }
+
+        if($encontrado){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
-/*
-    public function NombreUsuarioDisponible($nombreUsuario){
-        
+
+    public function UsuarioDisponible($nombreUsuario){
+        $existe = false;
         $consulta = "SELECT username FROM usuario WHERE username =  '$nombreUsuario'";
         $resultado = $this->db->prepare($consulta);
         $resultado->execute();
 
-        while($registros = $resultado->fetch(PDO::FETCH_ASSOC)){
-
+        while($registro = $resultado->fetch(PDO::FETCH_ASSOC)){
+            if($registro['username'] == $nombreUsuario){
+                $existe = true;
+            }
         }
-      
+      return $existe;
     }
-*/
+
 
 
 }

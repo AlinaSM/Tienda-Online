@@ -17,7 +17,7 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Inicio de Sesión</h5>
-                            <form class="form-signin">
+                            <form class="form-signin" method="POST" action="php/controller/pw3UsuariosControlador.php">
 
                                 <div class="form-label-group">
                                     <label for="Usuario">Nombre de Usuario</label>
@@ -28,6 +28,8 @@
                                     <label for="Contrasena">Contraseña</label>
                                     <input type="password" id="Contrasena" name="Contrasena" class="form-control" placeholder="Contraseña" required>
                                 </div>
+
+                                <input type="hidden" name="inpInicio">
 
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="idBotonRegistro">Ingresar</button>
                                 <hr class="my-4">
