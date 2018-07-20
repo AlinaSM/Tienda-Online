@@ -18,9 +18,9 @@ else if(isset($_POST['inpInicio'])){
 
     if($q !== "" &&  !($usuarios->UsuarioDisponible($q))){
         //buscar si la cadena se parece
-        echo "Nombre disponible";
+        echo "true";
     }else{
-        echo "Nombre NO disponible";
+        echo "false";
     }
     
 }

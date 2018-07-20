@@ -7,7 +7,6 @@
 <html lang="es-MX">
 <head>
     <?php    Head("");    ?>
-    
 </head>
 <body>
     <?php HeaderLogin(""); ?>

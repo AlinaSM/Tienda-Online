@@ -7,9 +7,18 @@ class UsuarioModelo{
 
     public function __construct(){
         require_once("pw3Conectar.php");
-        require_once("../controller/pw3FormatoControlador.php");
         $this->db = Conectar::Conexion();
-        //$usuarios = array();
+        $datos = array();
+    }
+
+    public function getDatosUsuario($dato){
+        $consulta = $this->db->query("SELECT * FROM articulos WHERE username = '".$dato['']."';");
+        
+        while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
+            $this->datos[] = $tupla;
+        }
+
+        return $this->$datos;
     }
 
 
@@ -25,8 +34,7 @@ class UsuarioModelo{
                                         ":apellido"   => $datos['Apellidos'],
                                         ":email"      => $datos['Email'],
                                         ":usuario"    => $datos['Usuario'],
-                                        ":contrasena" => password_hash( $datos['Contrasena'], 
-                                                                        PASSWORD_DEFAULT ),
+                                        ":contrasena" => password_hash( $datos['Contrasena'],  PASSWORD_DEFAULT ),
                                         ":direccion"  => $datos['Direccion']
                                     ));
         }catch(PDOException $e){
@@ -66,6 +74,18 @@ class UsuarioModelo{
       return $existe;
     }
 
+
+    public function Eliminar($nombreUsuario){
+        $consulta = "DELETE FROM usuario WHERE username = ':username'";
+
+        try{
+            $resultado = $this->db->prepare($consulta);
+            $resultado->execute(array(  ":username" => $nombreUsuario ));
+
+        }catch(PDOException $e){
+            echo "Error: al eliminar al usuario.";
+        }
+    }
 
 
 }
