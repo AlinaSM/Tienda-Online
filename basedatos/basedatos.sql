@@ -15,16 +15,6 @@ CREATE SCHEMA IF NOT EXISTS `TiendaOnline` DEFAULT CHARACTER SET utf8 ;
 USE `TiendaOnline` ;
 
 -- -----------------------------------------------------
--- Table `TiendaOnline`.`catalogo_tipo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TiendaOnline`.`catalogo_tipo` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `tipo` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `TiendaOnline`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `TiendaOnline`.`usuario` (
@@ -64,8 +54,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `TiendaOnline`.`articulos` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `tipo_id` INT NOT NULL,
-  `venta_id` INT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(500) NOT NULL DEFAULT 'No tiene Descripcion',
   `precio_unitario` DECIMAL(10,2) NOT NULL,
@@ -73,41 +61,17 @@ CREATE TABLE IF NOT EXISTS `TiendaOnline`.`articulos` (
   `status` ENUM('Disponible', 'No Disponible') NOT NULL DEFAULT 'Disponible',
   `condicion` ENUM('Nuevo', 'Usado') NOT NULL DEFAULT 'Nuevo',
   `fecha_publicacion` DATETIME NOT NULL,
+  `tipo_articulo` VARCHAR(45) NOT NULL,
+  `marca` VARCHAR(45) NOT NULL,
+  `modelo` VARCHAR(45) NOT NULL,
+  `venta_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_articulos_catalogo_tipo_idx` (`tipo_id` ASC),
   INDEX `fk_articulos_venta1_idx` (`venta_id` ASC),
-  CONSTRAINT `fk_articulos_catalogo_tipo`
-    FOREIGN KEY (`tipo_id`)
-    REFERENCES `TiendaOnline`.`catalogo_tipo` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_articulos_venta1`
     FOREIGN KEY (`venta_id`)
     REFERENCES `TiendaOnline`.`venta` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `TiendaOnline`.`envio`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TiendaOnline`.`envio` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `paqueteria` VARCHAR(45) NOT NULL,
-  `fecha_envio` DATE NOT NULL,
-  `fecha_entrega` DATE NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `TiendaOnline`.`tipo_pago`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TiendaOnline`.`tipo_pago` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `tipoPago` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -118,14 +82,8 @@ CREATE TABLE IF NOT EXISTS `TiendaOnline`.`pago` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `monto` DECIMAL(10,2) NOT NULL,
   `fecha` VARCHAR(45) NOT NULL,
-  `tipo_pago_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_pago_tipo_pago1_idx` (`tipo_pago_id` ASC),
-  CONSTRAINT `fk_pago_tipo_pago1`
-    FOREIGN KEY (`tipo_pago_id`)
-    REFERENCES `TiendaOnline`.`tipo_pago` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `tipo_pago` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -137,20 +95,13 @@ CREATE TABLE IF NOT EXISTS `TiendaOnline`.`compra` (
   `total` DECIMAL(10,2) NOT NULL,
   `fecha` DATE NOT NULL,
   `usuario_id` INT NOT NULL,
-  `envio_id` INT NOT NULL,
   `pago_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_compra_usuario1_idx` (`usuario_id` ASC),
-  INDEX `fk_compra_envio1_idx` (`envio_id` ASC),
   INDEX `fk_compra_pago1_idx` (`pago_id` ASC),
   CONSTRAINT `fk_compra_usuario1`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `TiendaOnline`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_compra_envio1`
-    FOREIGN KEY (`envio_id`)
-    REFERENCES `TiendaOnline`.`envio` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_compra_pago1`
@@ -227,23 +178,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TiendaOnline`.`imagenes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TiendaOnline`.`imagenes` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `direccion` VARCHAR(255) NOT NULL,
-  `articulos_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_imagenes_articulos1_idx` (`articulos_id` ASC),
-  CONSTRAINT `fk_imagenes_articulos1`
-    FOREIGN KEY (`articulos_id`)
-    REFERENCES `TiendaOnline`.`articulos` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `TiendaOnline`.`comentario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `TiendaOnline`.`comentario` (
@@ -263,6 +197,23 @@ CREATE TABLE IF NOT EXISTS `TiendaOnline`.`comentario` (
   CONSTRAINT `fk_comentario_usuario1`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `TiendaOnline`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `TiendaOnline`.`imagenes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `TiendaOnline`.`imagenes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `url_imagen` VARCHAR(455) NOT NULL,
+  `articulos_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_imagenes_articulos1_idx` (`articulos_id` ASC),
+  CONSTRAINT `fk_imagenes_articulos1`
+    FOREIGN KEY (`articulos_id`)
+    REFERENCES `TiendaOnline`.`articulos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
