@@ -1,5 +1,3 @@
-
-
 <?php
 
 function HeaderLogin($direccion){
@@ -13,7 +11,9 @@ function HeaderLogin($direccion){
 }
 
 
-function HeaderCompleto($direccion){
+function HeaderCompleto($direccion, $sesion){
+    
+
     echo '
     <header class="navbar  navbar-expand-lg  navbar-light" >
 
@@ -60,27 +60,48 @@ function HeaderCompleto($direccion){
                     <a class="dropdown-item" href="'.$direccion.'#mision">Mision</a>
                     <a class="dropdown-item" href="'.$direccion.'#vision">Vision</a>
                 </div>
+            </li>';
+        
+    //Evalua se hay una sesion iniciada, y muestra los botonos en cualquiera de los dos casos
+     if(isset($_SESSION['usuario'])){
+        echo '
+            <li class="nav-item">
+                <button type="button" class="btn btn-success btn-mrg-left" >Vender</button> 
+            </li> 
+            <li class="nav-item border-right">
+                <a class="nav-link" href="#">'.$_SESSION['usuario'].'</a>
             </li>
 
-            <!-- Botones de inicio de sesion y de registro -->
             <li class="nav-item">
-                <a class="nav-link" href="acceder.php">Iniciar Sesión</a>
+                <a class="nav-link" href="'.$direccion.'cerrar_sesion.php">Cerrar Sesion</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="registro.php">Registrarse</a>
-            </li>
 
             <!-- Boton del carrito de compras -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <img class="hg-30px" src="'.$direccion.'img/icons/cart-shop.png">
                 </a>
-            </li>
+            </li>';
+        
+     }else{
+        echo '
+        <!-- Botones de inicio de sesion y de registro -->
+        <li class="nav-item">
+            <a class="nav-link" href="acceder.php">Iniciar Sesión</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="registro.php">Registrarse</a>
+        </li>
+
+        ';
+     }
+
+
+        echo '
             </ul>
-
         </div>
-
     </header>
     ';
 }

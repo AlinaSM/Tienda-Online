@@ -9,7 +9,13 @@ else if(isset($_POST['inpInicio'])){
     $existe = $usuarios->ValidarInicio($_POST['Usuario'],$_POST['Contrasena']);
 
     if($existe){
-        echo "Inicio exitoso";
+        //Se inicia la sesion 
+        session_start();
+        $_SESSION['usuario'] = $_POST['Usuario'];
+        $nom = $_SESSION['usuario'];
+
+        //Inicio exitoso
+        header('Location: ../../index.php');
     }else{
         echo "Fallo en el inicio";
     }
