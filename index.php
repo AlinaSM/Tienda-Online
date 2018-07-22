@@ -1,7 +1,7 @@
 <?php 
 include('estructura/pw3_head.php');
 include('estructura/pw3_header.php');
-session_start(); 
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,10 +14,12 @@ session_start();
 <body>
     <?php
         HeaderCompleto("",$_SESSION);
-        /*include('estructura/pw3_carrusel.php');
+        /*
+        include('php/controller/pw3ArticulosControlador.php');
         include('php/view/pw3NosotrosView.php');
         */
-        include('php/controller/pw3ArticulosControlador.php');
+        include('estructura/pw3_carrusel.php');
+        
         include('estructura/pw3_footer.php');
     ?>
 </body>

@@ -1,14 +1,17 @@
 <?php
-    session_start();
 
-    $nombreUsuario ="";
-    $nombre = "Alina Salinas";
+$id = $_SESSION['id'];
+$nombre = $_SESSION['nombre'];
+$apellido = $_SESSION['apellido'];
+$email = $_SESSION['email'];
+$direccion = $_SESSION['direccion'];
+
 ?>
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Mi cuenta</h1>
-    <p class="lead">Hola <?php echo $nombre; ?>!</p>
+    <h1 class="display-4">Mi Perfil</h1>
+    <p class="lead">Hola <?php echo " $nombre $apellido "; ?>!</p>
   </div>
 </div>
 

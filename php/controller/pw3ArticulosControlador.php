@@ -5,7 +5,7 @@
 //$articulos = new ArticulosModelo();
 //$matriz_articulos = $articulos->getArticulos();
 
-include('php/view/pw3VentaArticulosView.php');
+include('../php/view/pw3VentaArticulosView.php');
 
 ?>
 

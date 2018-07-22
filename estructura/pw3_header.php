@@ -13,7 +13,6 @@ function HeaderLogin($direccion){
 
 function HeaderCompleto($direccion, $sesion){
     
-
     echo '
     <header class="navbar  navbar-expand-lg  navbar-light" >
 
@@ -33,7 +32,7 @@ function HeaderCompleto($direccion, $sesion){
             
             <li class="nav-item  dropdown">
                 <a class="nav-link  dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Departamentos
+                <small>Departamentos</small>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="'.$direccion.'">Tecnologia</a>
@@ -53,7 +52,7 @@ function HeaderCompleto($direccion, $sesion){
             <!-- Boton dropeable de la informacion de los miembros -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Conocenos
+                <small>Conocenos</small>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="'.$direccion.'#nosotros">Nosotros</a>
@@ -63,17 +62,20 @@ function HeaderCompleto($direccion, $sesion){
             </li>';
         
     //Evalua se hay una sesion iniciada, y muestra los botonos en cualquiera de los dos casos
+    //<a type="button" class="btn btn-success btn-mrg-left" >Vender</a> 
      if(isset($_SESSION['usuario'])){
         echo '
             <li class="nav-item">
-                <button type="button" class="btn btn-success btn-mrg-left" >Vender</button> 
+                
+                <a class="nav-link" href="'.$direccion.'pages/pw3Perfil.php"><small>'.$_SESSION['nombre'].'</small></a>
             </li> 
-            <li class="nav-item border-right">
-                <a class="nav-link" href="#">'.$_SESSION['usuario'].'</a>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="'.$direccion.'pages/pw3Venta.php"><small>Vender</small></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="'.$direccion.'cerrar_sesion.php">Cerrar Sesion</a>
+                <a class="nav-link" href="'.$direccion.'cerrar_sesion.php"><small>Cerrar Sesion</small></a>
             </li>
 
 

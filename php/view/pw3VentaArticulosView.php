@@ -10,7 +10,7 @@
 
     <br>
 
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="../prueba.php" method="POST" enctype="multipart/form-data">
 
         <div class="container">
             
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="form-group col-4">
                 <?php
-                    include('estructura/pw3_TiposArticulos.php');
+                    include('../estructura/pw3_TiposArticulos.php');
                 ?>
                 </div>
 

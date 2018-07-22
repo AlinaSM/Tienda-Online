@@ -4,6 +4,7 @@ class UsuarioModelo{
 
     private  $db;
     private $usuarios;
+    private $datos;
 
     public function __construct(){
         require_once("pw3Conectar.php");
@@ -12,13 +13,14 @@ class UsuarioModelo{
     }
 
     public function getDatosUsuario($dato){
-        $consulta = $this->db->query("SELECT * FROM articulos WHERE username = '".$dato['']."';");
+        $consulta = $this->db->query("SELECT id, nombre , apellido, email, username, direccion FROM usuario WHERE username = '".$dato."';");
         
         while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
-            $this->datos[] = $tupla;
+            //$this->datos[] = 
+            return $tupla;
         }
 
-        return $this->$datos;
+        //return $this->datos;
     }
 
 
@@ -46,7 +48,7 @@ class UsuarioModelo{
 
     public function ValidarInicio($usuario, $contrasena){
         $encontrado = false;
-        $consulta = "SELECT id, username, contrasena FROM usuario WHERE tipo = 'user' AND username ='".$usuario."';";
+        $consulta = "SELECT username, contrasena FROM usuario WHERE tipo = 'user' AND username ='".$usuario."';";
         $resultado = $this->db->prepare($consulta);
         $resultado->execute();
 
@@ -58,7 +60,6 @@ class UsuarioModelo{
 
         return $encontrado;
     }
-
 
     public function UsuarioDisponible($nombreUsuario){
         $existe = false;
