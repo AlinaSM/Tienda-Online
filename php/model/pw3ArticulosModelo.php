@@ -21,6 +21,35 @@ class ArticulosModelo{
 
         return $this->$articulos;
     }
+
+    public function Alta($datos){
+        $consulta = "INSERT INTO articulos (nombre, descripcion, precio_unitario, cantidad, estado, condicion,".
+                    " fecha_publicacion, tipo_articulo, marca, modelo, imagen, usuario_id ) VALUES (':Articulo',".
+                    " ':Descripcion', ':Precio', ':Cantidad', ':Estado', ':Condicion', ':Fecha', ':Tipo', ':Marca',".
+                    " ':Modelo', ':ImagenURL', ':IdUsuario');";
+
+        try{
+            $resultado = $this->db->prepare($consulta);
+            $resultado->execute(array(  ":Articulo"     => $datos['Articulo'],
+                                        ":Descripcion"  => $datos['Descripcion'],
+                                        ":Precio"       => $datos['Precio'],
+                                        ":Cantidad"     => $datos['Cantidad'],
+                                        ":Estado"       => "Disponible",
+                                        ":Condicion"    => $datos['Condicion'],
+                                        ":Fecha"        => $fecha,
+                                        ":Tipo"         => $datos['Tipo'],
+                                        ":Marca"        => $datos['Marca'],
+                                        ":Modelo"       => $datos['Modelo'],
+                                        ":ImagenURL"    => $datos['Articulo'],
+                                        ":IdUsuario"    => $datos['IdUsuario'],
+                                    ));
+
+        }catch(PDOException $e){
+            echo "Error: No se puedo dar de alta el articulo";
+        }
+
+
+    }
     
 
 }
