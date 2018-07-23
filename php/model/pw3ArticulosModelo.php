@@ -36,11 +36,11 @@ class ArticulosModelo{
                                         ":Cantidad"     => $datos['Cantidad'],
                                         ":Estado"       => "Disponible",
                                         ":Condicion"    => $datos['Condicion'],
-                                        ":Fecha"        => $fecha,
+                                        ":Fecha"        => date("Y-m-d H:i:s"),
                                         ":Tipo"         => $datos['Tipo'],
                                         ":Marca"        => $datos['Marca'],
                                         ":Modelo"       => $datos['Modelo'],
-                                        ":ImagenURL"    => $datos['Articulo'],
+                                        ":ImagenURL"    => $datos['Articulo'], // <--- 
                                         ":IdUsuario"    => $datos['IdUsuario'],
                                     ));
 

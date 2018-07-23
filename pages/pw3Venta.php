@@ -14,12 +14,7 @@ session_start();
 <body>
     <?php
         HeaderCompleto("../",$_SESSION);
-        /*
-        
-        include('php/view/pw3NosotrosView.php');
-        include('estructura/pw3_carrusel.php');
-        */
-        include('../php/controller/pw3ArticulosControlador.php');
+        include('../php/view/pw3VentaArticulosView.php');
         include('../estructura/pw3_footer.php');
     ?>
 </body>

@@ -1,11 +1,13 @@
 <?php
-//require_once("php/model/pw3ArticulosModelo");
-//require_once("../view/pw3ArticulosVista");
+/*require_once("php/model/pw3ArticulosModelo");
 
-//$articulos = new ArticulosModelo();
-//$matriz_articulos = $articulos->getArticulos();
+$articulos = new ArticulosModelo();
+$matriz_articulos = $articulos->getArticulos();
+*/
+if(isset($_POST['Articulo'])){
+    echo "Venta";
+}
 
-include('../php/view/pw3VentaArticulosView.php');
 
 ?>
 

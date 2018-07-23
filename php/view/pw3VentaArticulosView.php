@@ -10,7 +10,7 @@
 
     <br>
 
-    <form action="../prueba.php" method="POST" enctype="multipart/form-data">
+    <form action="../php/controller/pw3ArticulosControlador.php" name="frmVenta" method="POST" enctype="multipart/form-data">
 
         <div class="container">
             
@@ -55,7 +55,7 @@
                 <div class="form-group col-12">
                     <label for="Descripcion">Descripcion: </label>
                     <!--<input type="text" name="Descripcion" class="form-inline form-control" id="">-->
-                    <textarea name="Descripcion" id="" rows="10" class="form-control" ></textarea>
+                    <textarea name="Descripcion" id="" rows="5"  class="form-control" ></textarea>
                 </div>
 
             </div>
@@ -78,9 +78,10 @@
             </div>
 
             <div class="row">
-                <div class="custom-file col-12">
-                    <input type="file" name="Imagen" class="custom-file-input" id="customFileLang" lang="es">
-                    <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+            
+                <div class=" col-12">
+                <label for="Imagen">Imagen:</label>
+                    <input type="file" name="Imagen" id="customFileLang" lang="es">
                 </div>
             </div>
 
