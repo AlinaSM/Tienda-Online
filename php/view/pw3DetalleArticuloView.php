@@ -1,3 +1,15 @@
+<?php 
+
+$TituloArticulo = $_GET[''];
+$Precio = $_GET[''];
+$MaxCantidad = $_GET[''];
+$IdArticulo = $_GET[''];
+
+
+?>
+
+
+
 <div class="container">
 
     <div class="row">
@@ -27,7 +39,7 @@
                 </h4>
             </div>
         
-            <div class="row">
+            <div class="row  border-left-0">
                 <div class="col-3">
                     <label for="">Cantidad: </label>
                     <input type="number" class="form-control" min="1" max="<?php echo 9; ?>" name="" id="">

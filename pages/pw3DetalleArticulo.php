@@ -3,9 +3,11 @@ include('../estructura/pw3_head.php');
 include('../estructura/pw3_header.php');
 session_start(); 
 
-if(isset($_GET['id'])){
-   
-}
+$TituloArticulo = $_GET['t'];
+$Precio = $_GET['p'];
+$MaxCantidad = $_GET['c'];
+$IdArticulo = $_GET['i'];
+
 
 
 ?>

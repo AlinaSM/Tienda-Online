@@ -12,6 +12,19 @@ class ArticulosModelo{
     }
 
     
+    public function getArticuloByNombre(){
+        $consulta = $this->db->query("SELECT * FROM articulos WHERE nombre='$nombre';");
+
+        while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
+            return $tupla;
+        }
+
+        if($tupla){
+            return false;
+        } 
+    }
+
+    
     public function getArticulos(){
         $consulta = $this->db->query("SELECT * FROM articulos;");
 
@@ -21,6 +34,8 @@ class ArticulosModelo{
 
         return $this->$articulos;
     }
+
+    
 
     public function Alta($datos, $ImagenURL, $IdUsuario){
         $consulta = "INSERT INTO articulos (`nombre`, `descripcion`, `precio_unitario`, `cantidad`, `estado`,".
@@ -39,7 +54,7 @@ class ArticulosModelo{
     }
 
 
-    public function Eliminar($id){
+    public function Eliminar($id){      
         $consulta = "DELETE FROM articulos WHERE id = ':id'";
 
         try{
@@ -52,18 +67,28 @@ class ArticulosModelo{
     }
     
     public function Modificar($id, $datos){
-        $consulta = "UPDATE articulos SET id =':id', nombre = ':nombre', descripcion = <{descripcion: No tiene Descripcion}>,
-        `precio_unitario` = <{precio_unitario: }>,
-        `cantidad` = <{cantidad: }>,
-        `estado` = <{estado: Disponible}>,
-        `condicion` = <{condicion: Nuevo}>,
-        `fecha_publicacion` = <{fecha_publicacion: }>,
-        `tipo_articulo` = <{tipo_articulo: }>,
-        `marca` = <{marca: }>,
-        `modelo` = <{modelo: }>,
-        `imagen` = <{imagen: }>,
-        `usuario_id` = <{usuario_id: }>
-        WHERE `id` = <{expr}>;";
+        $consulta = " UPDATE articulos SET nombre = ':nombre',  descripcion = ':descripcion', ".
+                    " precio_unitario = ':precio', cantidad = ':cantidad', estado = ':estado',".
+                    " condicion = ':condicion', tipo_articulo = ':tipo', marca = ':marca',".
+                    " modelo = ':modelo', imagen` = ':imagen'  WHERE id = ':id_articulo';";
+
+        try{
+            $resultado = $this->db->prepare($consulta);
+            $resultado->execute(array(  ":nombre"         => $datos['Nombre'],
+                                        ":descripcion"    => $datos['Descripcion'],
+                                        ":precio"         => $datos['Precio'],
+                                        ":cantidad"       => $datos['Cantidad'],
+                                        ":estado"         => $datos['Estado'],
+                                        ":condicion"      => $datos['Condicion'],
+                                        ":tipo_articulo"  => $datos['Tipo'],
+                                        ":marca"          => $datos['Marca'],
+                                        ":modelo"         => $datos['Modelo'],
+                                        ":id_articulo"    => $id
+                                    ));
+            
+        }catch(PDOException $e){
+            echo "Error: al eliminar al usuario.";
+        }
     }
 
 }

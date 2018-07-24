@@ -21,6 +21,7 @@ if(isset($_POST['Articulo'])){   // Registro de articulos
         $IdUsuario = $_SESSION['id'];
 
         $articulos->Alta($_POST, $ImagenURL, $IdUsuario);
+        header('Location: ../../pages/pw3DetalleArticulo.php?');
         
     }else{
         echo "Error: el tipo de archivo que trata de mandar no es valido. >:c";
