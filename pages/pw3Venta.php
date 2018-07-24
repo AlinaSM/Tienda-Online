@@ -2,6 +2,10 @@
 include('../estructura/pw3_head.php');
 include('../estructura/pw3_header.php');
 session_start(); 
+
+
+
+
 ?>
 
 <!DOCTYPE html>
