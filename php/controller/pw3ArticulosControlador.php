@@ -4,10 +4,9 @@ session_start();
 require("../model/pw3ArticulosModelo.php");
 
 $articulos = new ArticulosModelo();
-//$matriz_articulos = $articulos->getArticulos();
 
-/*
 if(isset($_POST['Articulo'])){   // Registro de articulos
+    
     
     if( $ext = ValidarTipoImagen( $_FILES['Imagen']['type'] ) ){
         $nombreImagen = $_FILES['Imagen']['name'];
@@ -21,28 +20,20 @@ if(isset($_POST['Articulo'])){   // Registro de articulos
         
         $IdUsuario = $_SESSION['id'];
 
-        echo $ext;
-
         $articulos->Alta($_POST, $ImagenURL, $IdUsuario);
         
     }else{
         echo "Error: el tipo de archivo que trata de mandar no es valido. >:c";
     }
-  
-}
-*/
 
-if(isset($_FILES['Imagen'])){
-    $t = ValidarTipoImagen( $_FILES['Imagen']['type'] );
-    echo $t;
+    
 }
 
 
 function ValidarTipoImagen($tipo){
 
     if($tipo != 'image/jpg' && $tipo != 'image/jpeg' && $tipo != 'image/png' && $tipo != 'image/gif'){
-        return "Tipo no valido";
-        //return false;
+        return false;
     }else{
 
         switch($tipo){
@@ -63,9 +54,7 @@ function ValidarTipoImagen($tipo){
                 $extencion = '.gif';
             break;
         }
-
         return $extencion;
-        //return $extencion;
     }
 
 }

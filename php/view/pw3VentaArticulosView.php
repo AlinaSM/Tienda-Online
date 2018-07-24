@@ -1,3 +1,4 @@
+<script src="../js/validacion.js"></script>
 <section class="mrg-60px100px">
 
     <div class="row">
@@ -10,7 +11,8 @@
 
     <br>
 
-    <form action="../php/controller/pw3ArticulosControlador.php" name="frmVenta" id="frmVenta" method="POST" enctype="multipart/form-data">
+    <!--  -->
+    <form action="../php/controller/pw3ArticulosControlador.php" name="frmVenta" id="frmVenta" method="POST" enctype="multipart/form-data"  >
 
         <div class="container">
             
@@ -54,7 +56,6 @@
 
                 <div class="form-group col-12">
                     <label for="Descripcion">Descripcion: </label>
-                    <!--<input type="text" name="IdUsuario" class="form-inline form-control" id=" ?>">-->
                     <textarea name="Descripcion" id="" rows="5"  class="form-control" required></textarea>
                 </div>
 
@@ -81,21 +82,22 @@
             
                 <div class=" col-12">
                     <label for="Imagen">Imagen:</label>
-                    <input type="file" name="Imagen" id="customFileLang" lang="es" required>
+                    <input type="file" name="Imagen" id="Imagen" lang="es"  required>
                     <div id="respuesta"></div>
                 </div>
+                
             </div>
 
             <!--<input type="hidden" name="IdUsuario" value="">-->
 
             
             <div class="form-group my-4">
-                <input type="submit" value="Vender" class="btn btn-warning btn-block" required>
+                <input type="submit" value="Vender" class="btn btn-warning btn-block">
             </div>
         </div>
        
     </form>
 
 
-    <script src="js/acceso.js"></script>
+   
 </section>
