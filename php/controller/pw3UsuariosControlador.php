@@ -39,9 +39,9 @@ else if(isset($_GET['q']))
 
     if($q !== "" &&  !($usuarios->UsuarioDisponible($q))){
         //buscar si la cadena se parece
-        echo "true";
+        echo "Nombre valido";
     }else{
-        echo "false";
+        echo "Ya existe el nombre";
     }
     
 }

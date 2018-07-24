@@ -22,7 +22,7 @@ class ArticulosModelo{
         return $this->$articulos;
     }
 
-    public function Alta($datos){
+    public function Alta($datos,$ImagenURL){
         $consulta = "INSERT INTO articulos (nombre, descripcion, precio_unitario, cantidad, estado, condicion,".
                     " fecha_publicacion, tipo_articulo, marca, modelo, imagen, usuario_id ) VALUES (':Articulo',".
                     " ':Descripcion', ':Precio', ':Cantidad', ':Estado', ':Condicion', ':Fecha', ':Tipo', ':Marca',".
@@ -40,17 +40,42 @@ class ArticulosModelo{
                                         ":Tipo"         => $datos['Tipo'],
                                         ":Marca"        => $datos['Marca'],
                                         ":Modelo"       => $datos['Modelo'],
-                                        ":ImagenURL"    => $datos['Articulo'], // <--- 
-                                        ":IdUsuario"    => $datos['IdUsuario'],
+                                        ":ImagenURL"    => $ImagenURL,
+                                        ":IdUsuario"    => $IdUsuario,
                                     ));
 
         }catch(PDOException $e){
             echo "Error: No se puedo dar de alta el articulo";
         }
+    }
 
 
+    public function Eliminar($id){
+        $consulta = "DELETE FROM articulos WHERE id = ':id'";
+
+        try{
+            $resultado = $this->db->prepare($consulta);
+            $resultado->execute(array(  ":id" => $id ));
+
+        }catch(PDOException $e){
+            echo "Error: al eliminar al usuario.";
+        }
     }
     
+    public function Modificar($id, $datos){
+        $consulta = "UPDATE articulos SET id =':id', nombre = ':nombre', descripcion = <{descripcion: No tiene Descripcion}>,
+        `precio_unitario` = <{precio_unitario: }>,
+        `cantidad` = <{cantidad: }>,
+        `estado` = <{estado: Disponible}>,
+        `condicion` = <{condicion: Nuevo}>,
+        `fecha_publicacion` = <{fecha_publicacion: }>,
+        `tipo_articulo` = <{tipo_articulo: }>,
+        `marca` = <{marca: }>,
+        `modelo` = <{modelo: }>,
+        `imagen` = <{imagen: }>,
+        `usuario_id` = <{usuario_id: }>
+        WHERE `id` = <{expr}>;";
+    }
 
 }
 
