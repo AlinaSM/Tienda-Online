@@ -10,7 +10,7 @@
 
     <br>
 
-    <form action="../php/controller/pw3ArticulosControlador.php" name="frmVenta" method="POST" enctype="multipart/form-data">
+    <form action="../php/controller/pw3ArticulosControlador.php" name="frmVenta" id="frmVenta" method="POST" enctype="multipart/form-data">
 
         <div class="container">
             
@@ -80,8 +80,9 @@
             <div class="row">
             
                 <div class=" col-12">
-                <label for="Imagen">Imagen:</label>
+                    <label for="Imagen">Imagen:</label>
                     <input type="file" name="Imagen" id="customFileLang" lang="es" required>
+                    <div id="respuesta"></div>
                 </div>
             </div>
 
@@ -95,4 +96,6 @@
        
     </form>
 
+
+    <script src="js/acceso.js"></script>
 </section>

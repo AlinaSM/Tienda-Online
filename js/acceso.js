@@ -1,4 +1,3 @@
-var xhr = new XMLHttpRequest();
 var formulario = document.getElementById("formularioRegistro");
 
 function validarNombreUsuario(strNombre){

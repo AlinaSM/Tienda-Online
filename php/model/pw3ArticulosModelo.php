@@ -7,8 +7,8 @@ class ArticulosModelo{
 
     public function __construct(){
         require_once("pw3Conectar.php");
-        $this->$db = Conectar::Conexion();
-        $this->$articulos = array();
+        $this->db = Conectar::Conexion();
+        $this->articulos = array();
     }
 
     
@@ -22,30 +22,19 @@ class ArticulosModelo{
         return $this->$articulos;
     }
 
-    public function Alta($datos,$ImagenURL){
-        $consulta = "INSERT INTO articulos (nombre, descripcion, precio_unitario, cantidad, estado, condicion,".
-                    " fecha_publicacion, tipo_articulo, marca, modelo, imagen, usuario_id ) VALUES (':Articulo',".
-                    " ':Descripcion', ':Precio', ':Cantidad', ':Estado', ':Condicion', ':Fecha', ':Tipo', ':Marca',".
-                    " ':Modelo', ':ImagenURL', ':IdUsuario');";
-
+    public function Alta($datos, $ImagenURL, $IdUsuario){
+        $consulta = "INSERT INTO articulos (`nombre`, `descripcion`, `precio_unitario`, `cantidad`, `estado`,".
+        " `condicion`, `fecha_publicacion`, `tipo_articulo`, `marca`, `modelo`, `imagen`, `usuario_id`)".
+        " VALUES ('".$datos['Articulo']."', '".$datos['Descripcion']."', '".$datos['Precio']."', '".$datos['Cantidad'].
+        "', 'Disponible', '".$datos['Condicion']."', '".date("Y-m-d H:i:s")."', '".$datos['Tipo']."', '".$datos['Marca'].
+        "', '".$datos['Modelo']."', '".$ImagenURL."', '".$IdUsuario."');";
+       
         try{
-            $resultado = $this->db->prepare($consulta);
-            $resultado->execute(array(  ":Articulo"     => $datos['Articulo'],
-                                        ":Descripcion"  => $datos['Descripcion'],
-                                        ":Precio"       => $datos['Precio'],
-                                        ":Cantidad"     => $datos['Cantidad'],
-                                        ":Estado"       => "Disponible",
-                                        ":Condicion"    => $datos['Condicion'],
-                                        ":Fecha"        => date("Y-m-d H:i:s"),
-                                        ":Tipo"         => $datos['Tipo'],
-                                        ":Marca"        => $datos['Marca'],
-                                        ":Modelo"       => $datos['Modelo'],
-                                        ":ImagenURL"    => $ImagenURL,
-                                        ":IdUsuario"    => $IdUsuario,
-                                    ));
+            $this->db->query($consulta);
+            echo "Articulo dado de alta";
 
         }catch(PDOException $e){
-            echo "Error: No se puedo dar de alta el articulo";
+            echo "Error: No se puedo dar de alta el articulo, ERROR:". $e->getMessage();
         }
     }
 
