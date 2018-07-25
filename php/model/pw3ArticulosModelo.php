@@ -109,25 +109,33 @@ class ArticulosModelo{
         }
     }
     
-    public function Modificar($id, $datos){
-        $consulta = " UPDATE articulos SET nombre = ':nombre',  descripcion = ':descripcion', ".
-                    " precio_unitario = ':precio', cantidad = ':cantidad', estado = ':estado',".
-                    " condicion = ':condicion', tipo_articulo = ':tipo', marca = ':marca',".
-                    " modelo = ':modelo', imagen` = ':imagen'  WHERE id = ':id_articulo';";
+    public function Modificar($id, $datos,$ImagenURL){
+        
+        if($ImagenURL){
+            $consulta = " UPDATE articulos SET nombre = '".$datos['Articulo']."',  descripcion = '". $datos['Descripcion']."', ".
+                        " precio_unitario = '".$datos['Precio']."', cantidad = '".$datos['Cantidad']."', estado = ':estado',".
+                        " condicion = '".$datos['Condicion']."', tipo_articulo = '".$datos['Tipo']."', marca = '".$datos['Marca']."',".
+                        " modelo = '".$datos['Modelo']."', imagen` = '".$ImagenURL."'  WHERE id = '$id';";
+        }else{
+            $consulta = " UPDATE articulos SET nombre = '".$datos['Articulo']."',  descripcion = '". $datos['Descripcion']."', ".
+                    " precio_unitario = '".$datos['Precio']."', cantidad = '".$datos['Cantidad']."', estado = ':estado',".
+                    " condicion = '".$datos['Condicion']."', tipo_articulo = '".$datos['Tipo']."', marca = '".$datos['Marca']."',".
+                    " modelo = '".$datos['Modelo']."' WHERE id = '$id';";
+        }
+       /*
+        .
+        .
+        
+        .
+        
+        $ImagenURL
+        $IdUsuario
+        
+       */ 
+        
 
         try{
-            $resultado = $this->db->prepare($consulta);
-            $resultado->execute(array(  ":nombre"         => $datos['Nombre'],
-                                        ":descripcion"    => $datos['Descripcion'],
-                                        ":precio"         => $datos['Precio'],
-                                        ":cantidad"       => $datos['Cantidad'],
-                                        ":estado"         => $datos['Estado'],
-                                        ":condicion"      => $datos['Condicion'],
-                                        ":tipo_articulo"  => $datos['Tipo'],
-                                        ":marca"          => $datos['Marca'],
-                                        ":modelo"         => $datos['Modelo'],
-                                        ":id_articulo"    => $id
-                                    ));
+            $this->db->query($consulta);
             
         }catch(PDOException $e){
             echo "Error: al eliminar al usuario.";

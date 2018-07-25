@@ -35,7 +35,11 @@ if(isset($_POST['Articulo']) && !isset($_POST['btnCambios'])){   // Registro de 
 }
 else if($_POST['btnCambios']) //Editar Articulo
 {
-    
+    if($_FILES['Imagen']['name'] != null){
+        echo "imagen a cambiar";
+    }else{
+        echo "imagen se conserva";
+    }
     //header('Location: /Tienda-Online/pages/pw3EditarArticulo.php?i='.$id);
 }
 else if($_POST['Eliminar'])
