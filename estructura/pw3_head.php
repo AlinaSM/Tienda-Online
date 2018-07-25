@@ -7,6 +7,7 @@ function Head($direccion){
     echo '  <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="'.$direccion.'css/estilos.css">
+            <link rel="stylesheet" href="'.$direccion.'css/item.css">
             <title>Aperture: Encuentra la que quieres!</title>';
     
     ArchivosDeBootstrap($direccion);

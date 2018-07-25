@@ -3,13 +3,26 @@ include('../estructura/pw3_head.php');
 include('../estructura/pw3_header.php');
 session_start(); 
 
-$TituloArticulo = $_GET['t'];
-$Precio = $_GET['p'];
-$MaxCantidad = $_GET['c'];
-$IdArticulo = $_GET['i'];
+require("../php/model/pw3ArticulosModelo.php");
+$articulos = new ArticulosModelo();
 
+$articulo = $articulos->getArticuloById($_GET['i']);
 
+$TituloArticulo = $articulo['nombre'];
+$Descripcion    = $articulo['descripcion'];
+$Precio         = $articulo['precio_unitario'];
+$MaxCantidad    = $articulo['cantidad'];
+$ImagenURL      = $articulo['imagen'];
+$IdArticulo     = $_GET['i']; 
 
+$idUsuarioSesion = $_SESSION['id'];
+$idUsuarioArticulo      = $articulo['usuario_id'];
+
+if($idUsuarioSesion == $idUsuarioArticulo){
+    $botonEstado = "disabled='disabled'";
+}else{
+    $botonEstado = "";
+}
 ?>
 
 <!DOCTYPE html>

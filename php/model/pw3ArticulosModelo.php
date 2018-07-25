@@ -4,26 +4,41 @@ class ArticulosModelo{
 
     private $db;
     private $articulos;
+    private $articulosByTipo;
+    private $articulosByNombre;
 
     public function __construct(){
         require_once("pw3Conectar.php");
         $this->db = Conectar::Conexion();
         $this->articulos = array();
+        //$this->articulosByTipo = array();
+        //$this->articulosByNombre = array();
     }
 
     
-    public function getArticuloByNombre(){
+    public function getArticuloByNombre($nombre){
         $consulta = $this->db->query("SELECT * FROM articulos WHERE nombre='$nombre';");
 
         while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
             return $tupla;
         }
 
-        if($tupla){
+        if(!$tupla){
             return false;
         } 
     }
 
+    public function getArticuloById($id){
+        $consulta = $this->db->query("SELECT * FROM articulos WHERE id='$id';");
+
+        while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
+            return $tupla;
+        }
+
+        if(!$tupla){
+            return false;
+        } 
+    }
     
     public function getArticulos(){
         $consulta = $this->db->query("SELECT * FROM articulos;");
@@ -32,9 +47,28 @@ class ArticulosModelo{
             $this->articulos[] = $tupla;
         }
 
-        return $this->$articulos;
+        return $this->articulos;
     }
 
+    public function getArticulosByTipo($tipo){
+        $consulta = $this->db->query("SELECT nombre, descripcion FROM articulos WHERE tipo_articulo = '$tipo';");
+
+        while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
+            $this->articulos[] = $tupla;
+        }
+
+        return $this->articulos;
+    }
+
+    public function getArticulosByNombre($nom){
+        $consulta = $this->db->query("SELECT * FROM articulos WHERE nombre like '$nom';");
+
+        while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
+            $this->articulos[] = $tupla;
+        }
+
+        return $this->$articulos;
+    }
     
 
     public function Alta($datos, $ImagenURL, $IdUsuario){

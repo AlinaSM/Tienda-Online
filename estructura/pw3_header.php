@@ -35,9 +35,13 @@ function HeaderCompleto($direccion, $sesion){
                 <small>Departamentos</small>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="'.$direccion.'">Tecnologia</a>
-                    <a class="dropdown-item" href="'.$direccion.'">Libros</a>
-                    <a class="dropdown-item" href="'.$direccion.'">Instrumentos Musicales</a>
+                    <a class="dropdown-item" href="/Tienda-Online/pages/pw3Buscador.php?op=tip&b=Deportes">Deportes</a>
+                    <a class="dropdown-item" href="/Tienda-Online/pages/pw3Buscador.php?op=tip&b=Electronica">Electronica</a>
+                    <a class="dropdown-item" href="/Tienda-Online/pages/pw3Buscador.php?op=tip&b=Herramientas">Herramientas</a>
+                    <a class="dropdown-item" href="/Tienda-Online/pages/pw3Buscador.php?op=tip&b=Muebles">Muebles</a>
+                    <a class="dropdown-item" href="/Tienda-Online/pages/pw3Buscador.php?op=tip&b=Ropa">Ropa</a>
+                    <a class="dropdown-item" href="/Tienda-Online/pages/pw3Buscador.php?op=tip&b=Tecnologia">Tecnologia</a>
+                    <a class="dropdown-item" href="/Tienda-Online/pages/pw3Buscador.php?op=tip&b=Vehiculos">Vehiculos</a>
                 </div>
             </li>
             
