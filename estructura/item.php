@@ -1,14 +1,25 @@
-    <div class="block  col-3 my-1 mx-4">
-      <div class="product">
-        <img src="http://placehold.it/295x190/333333/FFFFFF">
-          
-      </div>
+<div class="block  col-3 my-2 mx-4 border">
+    <div class="product">
+        <img src=" <?php echo $registro['imagen']; ?> " >
+    </div>
     
-      <div class="info">
+    <div class="info">
         <h4><?php echo $registro['nombre']; ?></h4>
-             <h5 class="price">$62.97</h5>
-             <button type="button" class="btn btn-success">Ver</button>
-             <button type="button" class="btn btn-success">Al Carrito</button>
-      </div>
+        <h5 class="price"><?php echo $registro['precio_unitario']; ?></h5>
+
+        <?php if(isset($_GET['op'])): ?>
+            <form name="item" action="../php/controller/pw3DetalleArticulo.php" method="post">
+                <input type="hidden" name="i" value="<?php echo $registro['id']; ?>">
+                <input type="submit" class="btn btn-success" value="Ver">
+                <button type="button" class="btn btn-success">Al Carrito</button>
+            </form>
+        <?php else: ?>
+            <form name="item" action="../php/controller/pw3ArticulosControlador.php?i='.$id" method="post">
+                <input type="hidden" name="i" value="<?php echo $registro['id']; ?>">
+                <a type="button" class="btn btn-success" href=<?php echo "/Tienda-Online/pages/pw3EditarArticulo.php?i=".$registro['id']; ?> name="Editar"  >Editar</a>
+                <input type="submit" class="btn btn-danger" name="Eliminar" value="Eliminar">
+            </form>
+        <?php endif; ?>
 
     </div>
+</div>

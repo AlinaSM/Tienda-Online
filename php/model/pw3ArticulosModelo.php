@@ -51,7 +51,7 @@ class ArticulosModelo{
     }
 
     public function getArticulosByTipo($tipo){
-        $consulta = $this->db->query("SELECT nombre, descripcion FROM articulos WHERE tipo_articulo = '$tipo';");
+        $consulta = $this->db->query("SELECT * FROM articulos WHERE tipo_articulo = '$tipo';");
 
         while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
             $this->articulos[] = $tupla;
@@ -68,6 +68,16 @@ class ArticulosModelo{
         }
 
         return $this->$articulos;
+    }
+
+    public function getArticulosByUsuario($IdUsuario){
+        $consulta = $this->db->query("SELECT * FROM articulos WHERE usuario_id = '$IdUsuario';");
+
+        while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
+            $this->articulos[] = $tupla;
+        }
+
+        return $this->articulos;
     }
     
 
@@ -89,11 +99,10 @@ class ArticulosModelo{
 
 
     public function Eliminar($id){      
-        $consulta = "DELETE FROM articulos WHERE id = ':id'";
+        $consulta = "DELETE FROM articulos WHERE id = '$id'";
 
         try{
-            $resultado = $this->db->prepare($consulta);
-            $resultado->execute(array(  ":id" => $id ));
+            $this->db->query($consulta);
 
         }catch(PDOException $e){
             echo "Error: al eliminar al usuario.";

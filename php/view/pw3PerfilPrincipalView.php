@@ -24,7 +24,7 @@ $direccion = $_SESSION['direccion'];
             <div class="card-body">
                 <h5 class="card-title">Configuracion del Perfil</h5>
                 <p class="card-text">Edita la configuración de tu perfil.</p>
-                <a href="#" class="btn btn-primary">Editar Perfil</a>
+                <a href="pw3EditarPerfil.php" class="btn btn-primary">Editar Perfil</a>
             </div>
             </div>
         </div>
@@ -35,7 +35,7 @@ $direccion = $_SESSION['direccion'];
             <div class="card-body">
                 <h5 class="card-title">Mis Compras</h5>
                 <p class="card-text">Registro de tus anteriores compras.</p>
-                <a href="#" class="btn btn-primary">Ver compras</a>
+                <a href="pw3MisCompras.php" class="btn btn-primary">Ver compras</a>
             </div>
             </div>
         </div>
@@ -46,7 +46,7 @@ $direccion = $_SESSION['direccion'];
             <div class="card-body">
                 <h5 class="card-title">Mis Ventas</h5>
                 <p class="card-text">Mira la informacion de todas tus ventas.</p>
-                <a href="#" class="btn btn-primary">Ver ventas</a>
+                <a href="pw3MisVentas.php" class="btn btn-primary">Ver ventas</a>
             </div>
             </div>
         </div>

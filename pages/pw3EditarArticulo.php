@@ -3,6 +3,11 @@ include('../estructura/pw3_head.php');
 include('../estructura/pw3_header.php');
 session_start(); 
 
+require("../php/model/pw3ArticulosModelo.php");
+$articulos = new ArticulosModelo();
+
+$idUsuarioSesion = $_SESSION['id'];
+$op = "Editar";
 
 if(isset($_GET['i'])){
     $articulo       = $articulos->getArticuloById($_GET['i']);
@@ -15,7 +20,7 @@ if(isset($_GET['i'])){
     $MaxCantidad    = $articulo['cantidad'];
     $ImagenURL      = $articulo['imagen'];
     $Condicion      = $articulo['condicion'];
-    $IdArticulo     = $_GET['i']; 
+    $IdArticulo     = $_GET['i'];   
     $nuevo = "checked";
     $usado = "";
     
@@ -37,10 +42,9 @@ if(isset($_GET['i'])){
     $Precio         = "";
     $MaxCantidad    = "";
     $ImagenURL      = "";
-    $nuevo = "checked";
-    $usado = "";
 
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +57,7 @@ if(isset($_GET['i'])){
 <body>
     <?php
         HeaderCompleto("../",$_SESSION);
+        //include('../php/view/pw3DetalleArticuloView.php');
         include('../php/view/pw3VentaArticulosView.php');
         include('../estructura/pw3_footer.php');
     ?>

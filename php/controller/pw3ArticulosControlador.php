@@ -5,7 +5,8 @@ require("../model/pw3ArticulosModelo.php");
 
 $articulos = new ArticulosModelo();
 
-if(isset($_POST['Articulo'])){   // Registro de articulos
+//Venta del articulo
+if(isset($_POST['Articulo']) && !isset($_POST['btnCambios'])){   // Registro de articulos
     
     if( $ext = ValidarTipoImagen( $_FILES['Imagen']['type'] ) ){
 
@@ -31,6 +32,16 @@ if(isset($_POST['Articulo'])){   // Registro de articulos
     }
 
     
+}
+else if($_POST['btnCambios']) //Editar Articulo
+{
+    
+    //header('Location: /Tienda-Online/pages/pw3EditarArticulo.php?i='.$id);
+}
+else if($_POST['Eliminar'])
+{
+    $articulos->Eliminar($_POST['i']);
+    header('Location: /Tienda-Online/pages/pw3MisVentas.php');
 }
 
 

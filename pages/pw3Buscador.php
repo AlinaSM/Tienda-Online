@@ -6,7 +6,6 @@ require("../php/model/pw3ArticulosModelo.php");
 session_start(); 
 
 $articulos = new ArticulosModelo();
-
 $ArregloArticulos = array();
 
 if(isset($_GET['op'])){
@@ -19,6 +18,8 @@ if(isset($_GET['op'])){
         case 'tip':
             $ArregloArticulos = $articulos->getArticulosByTipo($_GET['b']);
         break;
+
+        
     
     }
 }
