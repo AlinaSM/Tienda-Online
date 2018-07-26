@@ -10,21 +10,12 @@ if(isset($_POST['Articulo']) && !isset($_POST['btnCambios'])){   // Registro de 
     
     if( $ext = ValidarTipoImagen( $_FILES['Imagen']['type'] ) ){
 
-        $nombreImagen = $_FILES['Imagen']['name'];
-        $tipoImagen = $_FILES['Imagen']['type'];
-
-        $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/Tienda-Online/img/articulos/";
-        $imagenGenerarNombre = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,10);
-        
-        $ImagenURL = $carpetaDestino . $imagenGenerarNombre . $ext;
-        move_uploaded_file($_FILES['Imagen']['tmp_name'],$ImagenURL);
-
-        $ImagenURL = "/Tienda-Online/img/articulos/" . $imagenGenerarNombre . $ext;
-        
+        $RutaImagen = Imagen($_FILES, $ext);
         $IdUsuario = $_SESSION['id'];
 
-        $articulos->Alta($_POST, $ImagenURL, $IdUsuario);
+        $articulos->Alta($_POST, $RutaImagen, $IdUsuario);
         $registro = $articulos->getArticuloByNombre($_POST['Articulo']);
+
         header('Location: ../../pages/pw3DetalleArticulo.php?t='.$registro['nombre'].'&p='.$registro['precio_unitario'].'&c='.$registro['cantidad'].'&i='.$registro['id']);
         
     }else{
@@ -33,20 +24,48 @@ if(isset($_POST['Articulo']) && !isset($_POST['btnCambios'])){   // Registro de 
 
     
 }
-else if($_POST['btnCambios']) //Editar Articulo
+else if(isset($_POST['btnCambios'])) //Editar Articulo
 {
+
     if($_FILES['Imagen']['name'] != null){
-        echo "imagen a cambiar";
-        $articulos->Modificar($id, $datos,$ImagenURL);
+        
+        if( $ext = ValidarTipoImagen( $_FILES['Imagen']['type'] ) ){
+
+            $RutaImagen = Imagen($_FILES, $ext);
+            $articulos->Modificar($_POST,$RutaImagen);
+            
+        }else{
+           echo "Tipo de imagen no valida";
+        }
+
     }else{
-        echo "imagen se conserva";
+        $articulos->Modificar($_POST,null);
+        
     }
-    //header('Location: /Tienda-Online/pages/pw3EditarArticulo.php?i='.$id);
+    header('Location: /Tienda-Online/pages/pw3EditarArticulo.php?i='.$_POST['idArticulo']);
+
 }
-else if($_POST['Eliminar'])
+else if(isset($_POST['Eliminar']))
 {
+
     $articulos->Eliminar($_POST['i']);
     header('Location: /Tienda-Online/pages/pw3MisVentas.php');
+
+}
+
+
+function Imagen( $ArchivoImagen, $ext ){
+    $nombreImagen   = $ArchivoImagen['Imagen']['name'];
+    $tipoImagen     = $ArchivoImagen['Imagen']['type'];
+
+    $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/Tienda-Online/img/articulos/";
+    $imagenGenerarNombre = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,10);
+        
+    $ImagenURL = $carpetaDestino . $imagenGenerarNombre . $ext;
+    move_uploaded_file($ArchivoImagen['Imagen']['tmp_name'],$ImagenURL);
+
+    $ImagenURL = "/Tienda-Online/img/articulos/" . $imagenGenerarNombre . $ext;
+    return $ImagenURL;
 }
 
 

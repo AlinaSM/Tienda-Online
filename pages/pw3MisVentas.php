@@ -22,7 +22,7 @@ $ArregloArticulos = $articulos->getArticulosByUsuario($_SESSION['id']);
 <body>
     <?php
         HeaderCompleto("../",$_SESSION);
-        include('../php/view/pw3ArticulosEnVentaView.php');
+        //include('../php/view/pw3ArticulosEnVentaView.php');
         
     ?>
 

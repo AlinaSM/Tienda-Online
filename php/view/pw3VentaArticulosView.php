@@ -100,6 +100,7 @@
             
             <div class="form-group my-4">
                 <?php if(isset($op)): ?>
+                    <input type="hidden" name="idArticulo" value= <?php echo $IdArticulo; ?> >
                     <input type="submit" value="Guardar Cambios" name="btnCambios" class="btn btn-warning btn-block">
                 <?php else:?>
                     <input type="submit" value="Vender" class="btn btn-warning btn-block">

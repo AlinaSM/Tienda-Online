@@ -105,40 +105,30 @@ class ArticulosModelo{
             $this->db->query($consulta);
 
         }catch(PDOException $e){
-            echo "Error: al eliminar al usuario.";
+            echo "Error: al eliminar el articulo.";
         }
     }
     
-    public function Modificar($id, $datos,$ImagenURL){
-        
+    public function Modificar($datos,$ImagenURL){
         if($ImagenURL != null){
+
             $consulta = " UPDATE articulos SET nombre = '".$datos['Articulo']."',  descripcion = '". $datos['Descripcion']."', ".
                         " precio_unitario = '".$datos['Precio']."', cantidad = '".$datos['Cantidad']."', estado = ':estado',".
                         " condicion = '".$datos['Condicion']."', tipo_articulo = '".$datos['Tipo']."', marca = '".$datos['Marca']."',".
-                        " modelo = '".$datos['Modelo']."', imagen` = '".$ImagenURL."'  WHERE id = '$id';";
+                        " modelo = '".$datos['Modelo']."', imagen = '".$ImagenURL."'  WHERE id = '".$datos['idArticulo']."';";
+                        
         }else{
             $consulta = " UPDATE articulos SET nombre = '".$datos['Articulo']."',  descripcion = '". $datos['Descripcion']."', ".
                     " precio_unitario = '".$datos['Precio']."', cantidad = '".$datos['Cantidad']."', estado = ':estado',".
                     " condicion = '".$datos['Condicion']."', tipo_articulo = '".$datos['Tipo']."', marca = '".$datos['Marca']."',".
-                    " modelo = '".$datos['Modelo']."' WHERE id = '$id';";
+                    " modelo = '".$datos['Modelo']."' WHERE id = '".$datos['idArticulo']."';";
         }
-       /*
-        .
-        .
-        
-        .
-        
-        $ImagenURL
-        $IdUsuario
-        
-       */ 
-        
 
+        
         try{
             $this->db->query($consulta);
-            
         }catch(PDOException $e){
-            echo "Error: al eliminar al usuario.";
+            echo "Error: al modificar el articulo.";
         }
     }
 
