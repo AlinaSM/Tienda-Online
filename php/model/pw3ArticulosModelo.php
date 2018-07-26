@@ -111,7 +111,7 @@ class ArticulosModelo{
     
     public function Modificar($id, $datos,$ImagenURL){
         
-        if($ImagenURL){
+        if($ImagenURL != null){
             $consulta = " UPDATE articulos SET nombre = '".$datos['Articulo']."',  descripcion = '". $datos['Descripcion']."', ".
                         " precio_unitario = '".$datos['Precio']."', cantidad = '".$datos['Cantidad']."', estado = ':estado',".
                         " condicion = '".$datos['Condicion']."', tipo_articulo = '".$datos['Tipo']."', marca = '".$datos['Marca']."',".

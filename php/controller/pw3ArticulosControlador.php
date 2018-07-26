@@ -37,6 +37,7 @@ else if($_POST['btnCambios']) //Editar Articulo
 {
     if($_FILES['Imagen']['name'] != null){
         echo "imagen a cambiar";
+        $articulos->Modificar($id, $datos,$ImagenURL);
     }else{
         echo "imagen se conserva";
     }
