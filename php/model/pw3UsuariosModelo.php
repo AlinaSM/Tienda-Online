@@ -27,21 +27,27 @@ class UsuarioModelo{
     public function Registro($datos){
         $consulta = "INSERT INTO usuario(tipo,nombre,apellido,email,username,contrasena,direccion) 
                      VALUES(:tipo, :nombre, :apellido, :email, :usuario, :contrasena,:direccion)";
-        
-        try{
-            $resultado = $this->db->prepare($consulta);
 
-            $resultado->execute(array(  ":tipo" => "user", 
-                                        ":nombre"     => $datos['Nombre'],
-                                        ":apellido"   => $datos['Apellidos'],
-                                        ":email"      => $datos['Email'],
-                                        ":usuario"    => $datos['Usuario'],
-                                        ":contrasena" => password_hash( $datos['Contrasena'],  PASSWORD_DEFAULT ),
-                                        ":direccion"  => $datos['Direccion']
-                                    ));
-        }catch(PDOException $e){
-            echo "Error: El nombre de usuario ya esta ocupado";
+        if( !UsuarioDisponible($datos['Usuario']) ){
+            try{
+                $resultado = $this->db->prepare($consulta);
+    
+                $resultado->execute(array(  ":tipo" => "user", 
+                                            ":nombre"     => $datos['Nombre'],
+                                            ":apellido"   => $datos['Apellidos'],
+                                            ":email"      => $datos['Email'],
+                                            ":usuario"    => $datos['Usuario'],
+                                            ":contrasena" => password_hash( $datos['Contrasena'],  PASSWORD_DEFAULT ),
+                                            ":direccion"  => $datos['Direccion']
+                                        ));
+            }catch(PDOException $e){
+                echo "Error: El nombre de usuario ya esta ocupado";
+            }
+        }else{
+            return false;
         }
+        
+        
       
     }
 
@@ -88,7 +94,6 @@ class UsuarioModelo{
         }
     }
 
-    
 
 
 }

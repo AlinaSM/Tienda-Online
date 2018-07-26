@@ -1,3 +1,3 @@
 <?php
-echo "/Tienda-Online";
+$nombreServidor = "/Tienda-Online";
 ?>

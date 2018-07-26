@@ -8,7 +8,7 @@
         <h5 class="price"><?php echo $registro['precio_unitario']; ?></h5>
 
         <?php if(isset($_GET['op'])): ?>
-            <form name="item" action="../php/controller/pw3DetalleArticulo.php" method="post">
+            <form name="item" action="../pages/pw3DetalleArticulo.php" method="GET">
                 <input type="hidden" name="i" value="<?php echo $registro['id']; ?>">
                 <input type="submit" class="btn btn-success" value="Ver">
                 <button type="button" class="btn btn-success">Al Carrito</button>

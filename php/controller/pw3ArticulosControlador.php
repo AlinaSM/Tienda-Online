@@ -2,6 +2,8 @@
 session_start();
 
 require("../model/pw3ArticulosModelo.php");
+require('../../estructura/pw3NombreServidor.php');
+
 
 $articulos = new ArticulosModelo();
 
@@ -16,7 +18,7 @@ if(isset($_POST['Articulo']) && !isset($_POST['btnCambios'])){   // Registro de 
         $articulos->Alta($_POST, $RutaImagen, $IdUsuario);
         $registro = $articulos->getArticuloByNombre($_POST['Articulo']);
 
-        header('Location: ../../pages/pw3DetalleArticulo.php?t='.$registro['nombre'].'&p='.$registro['precio_unitario'].'&c='.$registro['cantidad'].'&i='.$registro['id']);
+        header('Location: '.$nombreServidor.'/pages/pw3DetalleArticulo.php?t='.$registro['nombre'].'&p='.$registro['precio_unitario'].'&c='.$registro['cantidad'].'&i='.$registro['id']);
         
     }else{
         echo "Error: el tipo de archivo que trata de mandar no es valido. >:c";
@@ -42,14 +44,14 @@ else if(isset($_POST['btnCambios'])) //Editar Articulo
         $articulos->Modificar($_POST,null);
         
     }
-    header('Location: /Tienda-Online/pages/pw3EditarArticulo.php?i='.$_POST['idArticulo']);
+    header('Location: '.$nombreServidor.'/pages/pw3EditarArticulo.php?i='.$_POST['idArticulo']);
 
 }
 else if(isset($_POST['Eliminar']))
 {
 
     $articulos->Eliminar($_POST['i']);
-    header('Location: /Tienda-Online/pages/pw3MisVentas.php');
+    header('Location: '.$nombreServidor.'/pages/pw3MisVentas.php');
 
 }
 
@@ -64,7 +66,7 @@ function Imagen( $ArchivoImagen, $ext ){
     $ImagenURL = $carpetaDestino . $imagenGenerarNombre . $ext;
     move_uploaded_file($ArchivoImagen['Imagen']['tmp_name'],$ImagenURL);
 
-    $ImagenURL = "/Tienda-Online/img/articulos/" . $imagenGenerarNombre . $ext;
+    $ImagenURL = "'.$nombreServidor.'/img/articulos/" . $imagenGenerarNombre . $ext;
     return $ImagenURL;
 }
 

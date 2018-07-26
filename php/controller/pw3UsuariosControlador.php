@@ -1,11 +1,23 @@
 <?php
+require('../../estructura/pw3NombreServidor.php');
 require("../model/pw3UsuariosModelo.php");
 $usuarios = new UsuarioModelo();
 
 if(isset($_POST['inpRegistro']))
 {
-    $usuarios->Registro($_POST);
-    header('Location: ../../index.php');
+    if($usuarios->UsuarioDisponible($_POST['Usuario'])){
+        header('Location: '.$nombreServidor.'/registro.php?op=fallo');
+    }else{
+        $usuarios->Registro($_POST);
+        session_start();
+        $_SESSION['usuario'] = $_POST['Usuario'];
+        $nom = $_SESSION['usuario'];
+        $datos = $usuarios->getDatosUsuario($nom);
+        DatosSesion($_POST['Usuario'], $datos);
+
+        header('Location: '.$nombreServidor.'/index.php');
+    }
+    
 }
 else if(isset($_POST['inpInicio']))
 {
@@ -16,20 +28,13 @@ else if(isset($_POST['inpInicio']))
         session_start();
         $_SESSION['usuario'] = $_POST['Usuario'];
         $nom = $_SESSION['usuario'];
-
         $datos = $usuarios->getDatosUsuario($nom);
-       
-        $_SESSION['id']         = $datos['id'];
-        $_SESSION['nombre']     = $datos['nombre'];
-        $_SESSION['apellido']   = $datos['apellido'];
-        $_SESSION['email']      = $datos['email'];
-        $_SESSION['direccion']  = $datos['direccion'];
+        DatosSesion($_POST['Usuario'], $datos);
 
-        //echo "".$_SESSION['id'] ."".$_SESSION['nombre'] ."".$_SESSION['apellido'] ."".$_SESSION['email'] ."".$_SESSION['direccion'] ."";
-
-        //Inicio exitoso
-        header('Location: ../../index.php');
+        header('Location: '.$nombreServidor.'/index.php');
     }else{
+        
+        header('Location: '.$nombreServidor.'/acceder.php?op=fallo');
         echo "Fallo en el inicio";
     }
 }
@@ -44,6 +49,18 @@ else if(isset($_GET['q']))
         echo "Ya existe el nombre";
     }
     
+}
+
+
+
+function DatosSesion($nom, $datos){
+    
+       
+        $_SESSION['id']         = $datos['id'];
+        $_SESSION['nombre']     = $datos['nombre'];
+        $_SESSION['apellido']   = $datos['apellido'];
+        $_SESSION['email']      = $datos['email'];
+        $_SESSION['direccion']  = $datos['direccion'];
 }
 
 ?>

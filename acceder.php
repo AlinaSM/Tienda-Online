@@ -27,11 +27,16 @@
                                 <div class="form-label-group">
                                     <label for="Contrasena">Contraseña</label>
                                     <input type="password" id="Contrasena" name="Contrasena" class="form-control" placeholder="Contraseña" required>
-                                </div>
+                                </div>  
 
+                                <?php if(isset($_GET['op']) && $_GET['op'] == 'fallo'): ?>
+                                    <div class="alert alert-danger  text-center  my-3" role="alert">
+                                        Los datos que ingreso son incorrectos, <br> favor de intentarlo de nuevo
+                                    </div>
+                                <?php endif;?>
                                 <input type="hidden" name="inpInicio">
 
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="idBotonRegistro">Ingresar</button>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase my-2" type="submit" id="idBotonRegistro">Ingresar</button>
                                 <hr class="my-4">
 
                             </form>

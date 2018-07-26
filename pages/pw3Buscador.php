@@ -18,34 +18,10 @@ if(isset($_GET['op'])){
         case 'tip':
             $ArregloArticulos = $articulos->getArticulosByTipo($_GET['b']);
         break;
-
-        
     
     }
 }
 
-
-/*
-require("../php/model/pw3ArticulosModelo.php");
-$articulos = new ArticulosModelo();
-
-$articulo = $articulos->getArticuloById($_GET['i']);
-
-$TituloArticulo = $articulo['nombre'];
-$Descripcion    = $articulo['descripcion'];
-$Precio         = $articulo['precio_unitario'];
-$MaxCantidad    = $articulo['cantidad'];
-$ImagenURL      = $articulo['imagen'];
-$IdArticulo     = $_GET['i']; 
-
-$idUsuarioSesion = $_SESSION['id'];
-$idUsuarioArticulo      = $articulo['usuario_id'];
-
-if($idUsuarioSesion == $idUsuarioArticulo){
-    $botonEstado = "disabled='disabled'";
-}else{
-    $botonEstado = "";
-}*/
 ?>
 
 <!DOCTYPE html>
@@ -58,12 +34,7 @@ if($idUsuarioSesion == $idUsuarioArticulo){
 <body>
     <?php
         HeaderCompleto("../",$_SESSION);
-        include('../php/view/pw3ArticulosEnVentaView.php');
-        
     ?>
-
-
-
 
 <div class="container my-5">
 

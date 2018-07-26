@@ -36,7 +36,13 @@
                                 <div class="form-label-group">
                                     <label for="Usuario">Nombre de Usuario</label>
                                     <input type="text" id="Usuario" name="Usuario" class="form-control"  onkeyup ="validarNombreUsuario(this.value)" placeholder="Nombre de Usuario"  >
-                                    <span id="txtHint"></span>
+                                    
+                                        <?php if(isset($_GET['op']) && $_GET['op'] == 'fallo'): ?>
+                                            <div class="alert alert-danger  text-center  my-3" role="alert">
+                                                El nombre de usuario ya esta ocupado, <br> favor de intentarlo con otro
+                                            </div>
+                                        <?php endif;?>
+
                                 </div>
 
                                 <div class="form-label-group">
@@ -51,7 +57,7 @@
 
                                 <input type="hidden" name="inpRegistro">
 
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="idBotonRegistro">Registrarse</button>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase  my-2" type="submit" id="idBotonRegistro">Registrarse</button>
                                 <hr class="my-4">
 
                             </form>
