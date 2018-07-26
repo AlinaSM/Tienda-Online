@@ -27,8 +27,6 @@ $ArregloArticulos = $articulos->getArticulosByUsuario($_SESSION['id']);
     ?>
 
 
-
-
 <div class="container my-5">
 
     <div class="row my-2">

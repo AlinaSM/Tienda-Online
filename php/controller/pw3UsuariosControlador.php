@@ -1,4 +1,5 @@
 <?php
+
 require('../../estructura/pw3NombreServidor.php');
 require("../model/pw3UsuariosModelo.php");
 $usuarios = new UsuarioModelo();
@@ -14,10 +15,22 @@ if(isset($_POST['inpRegistro']))
         $nom = $_SESSION['usuario'];
         $datos = $usuarios->getDatosUsuario($nom);
         DatosSesion($_POST['Usuario'], $datos);
-
         header('Location: '.$nombreServidor.'/index.php');
+        
     }
     
+}else if(isset($_POST['EliminarCuenta'])){
+    $usuarios->Eliminar($_SESSION['id']);
+    session_destroy();
+    header('Location: '.$nombreServidor.'/index.php');
+}else if(isset($_POST['editarPerfil'])){
+        $usuarios->Modificar($_POST, $_SESSION['id']);
+        session_start();
+        $_SESSION['usuario'] = $_POST['Usuario'];
+        $nom = $_SESSION['usuario'];
+        $datos = $usuarios->getDatosUsuario($nom);
+        DatosSesion($_POST['Usuario'], $datos);
+        header('Location: '.$nombreServidor.'/index.php');
 }
 else if(isset($_POST['inpInicio']))
 {

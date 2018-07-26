@@ -12,13 +12,15 @@ if(isset($_POST['Articulo']) && !isset($_POST['btnCambios'])){   // Registro de 
     
     if( $ext = ValidarTipoImagen( $_FILES['Imagen']['type'] ) ){
 
-        $RutaImagen = Imagen($_FILES, $ext);
+        $RutaImagen = Imagen($_FILES, $ext, $nombreServidor);
         $IdUsuario = $_SESSION['id'];
 
         $articulos->Alta($_POST, $RutaImagen, $IdUsuario);
-        $registro = $articulos->getArticuloByNombre($_POST['Articulo']);
-
+        //$registro = $articulos->getArticuloByNombre($_POST['Articulo']);
+    foreach($articulos->getArticuloByNombre($_POST['Articulo']) as $registro){
         header('Location: '.$nombreServidor.'/pages/pw3DetalleArticulo.php?t='.$registro['nombre'].'&p='.$registro['precio_unitario'].'&c='.$registro['cantidad'].'&i='.$registro['id']);
+    }
+
         
     }else{
         echo "Error: el tipo de archivo que trata de mandar no es valido. >:c";
@@ -44,7 +46,7 @@ else if(isset($_POST['btnCambios'])) //Editar Articulo
         $articulos->Modificar($_POST,null);
         
     }
-    header('Location: '.$nombreServidor.'/pages/pw3EditarArticulo.php?i='.$_POST['idArticulo']);
+    header("Location: $nombreServidor/pages/pw3EditarArticulo.php?i=".$_POST['idArticulo']);
 
 }
 else if(isset($_POST['Eliminar']))
@@ -56,7 +58,7 @@ else if(isset($_POST['Eliminar']))
 }
 
 
-function Imagen( $ArchivoImagen, $ext ){
+function Imagen( $ArchivoImagen, $ext, $nombreServidor ){
     $nombreImagen   = $ArchivoImagen['Imagen']['name'];
     $tipoImagen     = $ArchivoImagen['Imagen']['type'];
 
@@ -66,7 +68,7 @@ function Imagen( $ArchivoImagen, $ext ){
     $ImagenURL = $carpetaDestino . $imagenGenerarNombre . $ext;
     move_uploaded_file($ArchivoImagen['Imagen']['tmp_name'],$ImagenURL);
 
-    $ImagenURL = "'.$nombreServidor.'/img/articulos/" . $imagenGenerarNombre . $ext;
+    $ImagenURL = "$nombreServidor/img/articulos/" . $imagenGenerarNombre . $ext;
     return $ImagenURL;
 }
 

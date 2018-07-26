@@ -52,8 +52,9 @@ $registro = $articulos->getArticuloById($idArticulo);
                 <tr>
                      <th></th> <th></th> <th></th> <th></th><th><?php echo "Total: $ $total";?></th>
                 </tr>
-
+                
             </table>
+            <a  class="btn btn-primary btn-lg " href="../php/controller/pw3CompraControlador.php?ida=<?php echo "$idArticulo" ?>&cant=<?php echo "$Cantidad" ?>">Comprar Ahora</a>
         </div>
     </div>
 </div>
