@@ -20,14 +20,10 @@ $ArregloArticulos = $articulos->getArticulosByUsuario($_SESSION['id']);
     ?>
 </head>
 <body>
+    
     <?php
         HeaderCompleto("../",$_SESSION);
-        //include('../php/view/pw3ArticulosEnVentaView.php');
-        
     ?>
-
-
-
 
 <div class="container my-5">
 

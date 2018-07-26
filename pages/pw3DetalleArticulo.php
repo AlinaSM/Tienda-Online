@@ -5,15 +5,17 @@ session_start();
 
 require("../php/model/pw3ArticulosModelo.php");
 $articulos = new ArticulosModelo();
+$MatrizArticulo = array();
+$MatrizArticulo = $articulos->getArticuloById($_GET['i']);
 
-$articulo = $articulos->getArticuloById($_GET['i']);
-
-$TituloArticulo = $articulo['nombre'];
-$Descripcion    = $articulo['descripcion'];
-$Precio         = $articulo['precio_unitario'];
-$MaxCantidad    = $articulo['cantidad'];
-$ImagenURL      = $articulo['imagen'];
-$IdArticulo     = $_GET['i']; 
+foreach($MatrizArticulo as $articulo){
+    $TituloArticulo = $articulo['nombre'];
+    $Descripcion    = $articulo['descripcion'];
+    $Precio         = $articulo['precio_unitario'];
+    $MaxCantidad    = $articulo['cantidad'];
+    $ImagenURL      = $articulo['imagen'];
+    $IdArticulo     = $_GET['i']; 
+}
 
 $idUsuarioSesion = $_SESSION['id'];
 $idUsuarioArticulo      = $articulo['usuario_id'];

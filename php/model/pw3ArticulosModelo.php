@@ -28,17 +28,7 @@ class ArticulosModelo{
         } 
     }
 
-    public function getArticuloById($id){
-        $consulta = $this->db->query("SELECT * FROM articulos WHERE id='$id';");
-
-        while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
-            return $tupla;
-        }
-
-        if(!$tupla){
-            return false;
-        } 
-    }
+    
     
     public function getArticulos(){
         $consulta = $this->db->query("SELECT * FROM articulos;");
@@ -78,6 +68,17 @@ class ArticulosModelo{
         }
 
         return $this->articulos;
+    }
+
+    public function getArticuloById($id){
+        $consulta = $this->db->query("SELECT * FROM articulos WHERE id='$id';");
+
+        while($tupla = $consulta->fetch(PDO::FETCH_ASSOC)){
+            $this->articulos[] = $tupla;
+        }
+
+        return $this->articulos;
+        
     }
     
 
