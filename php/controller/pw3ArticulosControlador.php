@@ -49,6 +49,10 @@ else if(isset($_POST['btnCambios'])) //Editar Articulo
     header("Location: $nombreServidor/pages/pw3EditarArticulo.php?i=".$_POST['idArticulo']);
 
 }
+else if(isset($_GET['btnBuscador']))
+{
+    $resultado = $articulos->Buscador($_GET['ky']);
+}
 else if(isset($_POST['Eliminar']))
 {
 

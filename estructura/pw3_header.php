@@ -47,9 +47,9 @@ function HeaderCompleto($direccion, $sesion){
             
             <!-- Formulario del buscador del sitio web -->
             <li class="nav-item">
-            <form class="form-inline  my-2  my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Articulo que desea...">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            <form class="form-inline  my-2  my-lg-0" action="php/controller/pw3ArticulosControlador.php">
+                <input class="form-control mr-sm-2" type="search" placeholder="Articulo que desea..." name="ky">
+                <button class="btn btn-outline-success my-2 my-sm-0" name="btnBuscador" type="submit">Buscar</button>
             </form>
             </li>
             

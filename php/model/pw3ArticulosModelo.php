@@ -113,6 +113,19 @@ class ArticulosModelo{
             }
 
     }
+
+    public function Buscador($palabra){
+        $consulta = "SELECT articulos.nombre, descripcion, precio_unitario, condicion, tipo_articulo, marca, modelo, imagen, username 
+                     FROM articulos, usuario  WHERE articulos.nombre like '%$palabra%' OR descripcion like '%$palabra%' 
+                     AND usuario_id = usuario.id GROUP BY(articulos.nombre);";
+        $resultado = $this->db->query($consulta);
+
+        while($tupla = $resultado->fetch(PDO::FETCH_ASSOC)){
+            $this->articulos[] = $tupla;
+        }
+        return $this->articulos;
+    }
+
 }
 
 
